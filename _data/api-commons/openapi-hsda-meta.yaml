@@ -73,6 +73,32 @@ paths:
               $ref: "#/definitions/meta"
       tags:
       - Meta
+    put:
+      summary: Update Meta
+      description: Update an existing meta entry.
+      operationId: updateMeta
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: meta_id
+          description: 'The meta id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/meta'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Meta Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/meta"
+      tags:
+      - Meta       
   /meta/roll-back/:
     get:
       summary: Roll Back Meta
@@ -166,7 +192,7 @@ definitions:
         description: 'The body for entry.'
         type: string
       status:
-        description: 'The status of this entry.'
+        description: 'The status of this entry (Complete, Waiting)'
         type: string
     required:
       - id
