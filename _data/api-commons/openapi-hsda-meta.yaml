@@ -53,6 +53,26 @@ paths:
               $ref: "#/definitions/meta"
       tags:
       - Meta
+  /meta/{meta_id}/:
+    get:
+      summary: Get Meta
+      description: Get Meta
+      operationId: getMeta
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: meta_id
+          description: 'The meta id.'
+      responses:
+        '200':
+          description: Meta Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/meta"
+      tags:
+      - Meta
   /meta/roll-back/:
     get:
       summary: Roll Back Meta
