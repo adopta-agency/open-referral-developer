@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title></title>
+  
+  <link rel="self" href="http://developer.open.referral.adopta.agency//atom.xml"/>
+  <author><name>Kin Lane</name></author>
+  <id>http://developer.open.referral.adopta.agency//atom.xml</id>
+	
+</feed>

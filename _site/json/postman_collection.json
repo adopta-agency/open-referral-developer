@@ -1,0 +1,251 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Miami Open 211 API",
+		"_postman_id": "a4288884-2759-d526-b40c-67bd25ebd405",
+		"description": "This is a developer area for the Miami Open211 API, providing access to the raw data behind the Switchboard of Miami website. The purpose of this API is to allow anyone to develop web, mobile, or other types of applications that serve the mission of Switchboard of Miami. This portal is currently under development, and is not product ready yet.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "categories",
+			"description": "Folder for categories",
+			"item": [
+				{
+					"name": "Categories",
+					"request": {
+						"url": "https://miamiopen211-api.herokuapp.com/api/categories",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "This endpoint retrieves all categories."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "locations",
+			"description": "Folder for locations",
+			"item": [
+				{
+					"name": "Locations",
+					"request": {
+						"url": "https://miamiopen211-api.herokuapp.com/api/locations",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Retrieve all of the locations available."
+					},
+					"response": []
+				},
+				{
+					"name": "Location",
+					"request": {
+						"url": {
+							"raw": "https://miamiopen211-api.herokuapp.com/api/locations/:location_id",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"miamiopen211-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"locations",
+								":location_id"
+							],
+							"variable": [
+								{
+									"value": "{{location_id}}",
+									"id": "location_id"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Retrieve all of the locations available in this database."
+					},
+					"response": []
+				},
+				{
+					"name": "Find Nearby Locations",
+					"request": {
+						"url": {
+							"raw": "https://miamiopen211-api.herokuapp.com/api/locations/:location_id/nearby?radius={{radius}}&page={{page}}&per_page={{per_page}}",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"miamiopen211-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"locations",
+								":location_id",
+								"nearby"
+							],
+							"query": [
+								{
+									"key": "radius",
+									"value": "{{radius}}"
+								},
+								{
+									"key": "page",
+									"value": "{{page}}"
+								},
+								{
+									"key": "per_page",
+									"value": "{{per_page}}"
+								}
+							],
+							"variable": [
+								{
+									"value": "{{location_id}}",
+									"id": "location_id"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "This endpoint retrieves all locations that are near the specified location."
+					},
+					"response": []
+				},
+				{
+					"name": "Services",
+					"request": {
+						"url": {
+							"raw": "https://miamiopen211-api.herokuapp.com/api/locations/:location_id/services",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"miamiopen211-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"locations",
+								":location_id",
+								"services"
+							],
+							"variable": [
+								{
+									"value": "{{location_id}}",
+									"id": "location_id"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Retrieve all services for this location"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "organizations",
+			"description": "Folder for organizations",
+			"item": [
+				{
+					"name": "Organizations",
+					"request": {
+						"url": "https://miamiopen211-api.herokuapp.com/api/organizations",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Retrieve all of the organizations available in this database."
+					},
+					"response": []
+				},
+				{
+					"name": "Organizations",
+					"request": {
+						"url": {
+							"raw": "https://miamiopen211-api.herokuapp.com/api/organizations/:organization_id",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"miamiopen211-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"organizations",
+								":organization_id"
+							],
+							"variable": [
+								{
+									"value": "{{organization_id}}",
+									"id": "organization_id"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Retrieve all of the organizations available in this database."
+					},
+					"response": []
+				},
+				{
+					"name": "Organization Locations",
+					"request": {
+						"url": {
+							"raw": "https://miamiopen211-api.herokuapp.com/api/organizations/:organization_id/locations",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"miamiopen211-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"organizations",
+								":organization_id",
+								"locations"
+							],
+							"variable": [
+								{
+									"value": "{{organization_id}}",
+									"id": "organization_id"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "This endpoint retrieves all locations that belong to a particular organization."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "search",
+			"description": "Folder for search",
+			"item": [
+				{
+					"name": "Search",
+					"request": {
+						"url": "https://miamiopen211-api.herokuapp.com/api/search?category={{category}}&email={{email}}&keyword={{keyword}}&language={{language}}&lat_lng={{lat_lng}}&location={{location}}&org_name={{org_name}}&radius={{radius}}&service_area={{service_area}}&status={{status}}&page={{page}}&per_page={{per_page}}",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "This endpoint retrieves all locations that match the criteria based on the parameters below. Multiple parameters can be used at the same time, separated by an ampersand (&)."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
