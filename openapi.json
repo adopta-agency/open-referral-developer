@@ -1,4 +1,6 @@
 ---
 layout: none
 ---
-{% assign yaml_data = site.data.api-commons.openapi | replace: '.yaml', '.json' %}{% assign show_json = yaml_data | json | replace: '=>', ':' %}{{ show_json }}
+{% assign yaml_data = site.data.api-commons.openapi-hsda | replace: '.yaml', '.json' %}
+{% assign show_json = yaml_data | json | replace: '=>', ':' %}
+{{ show_json }}
