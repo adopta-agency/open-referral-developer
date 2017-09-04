@@ -146,9 +146,28 @@ paths:
       tags:
       - Contacts
   /contacts/complete/{contact_id}/:
+    get:
+      summary: Get Contacts (Complete)
+      description: Get Contacts (Complete)
+      operationId: getContactComplete
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contact_id
+          description: The contact id.
+      responses:
+        '200':
+          description: Contact Complete Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/contact_complete"
+      tags:
+      - Contacts
     put:
-      summary: Update contact with full details
-      description: Updates a contact entry with full details
+      summary: Update Contact (Complete)
+      description: Update Contact (Complete)
       operationId: updateContactsComplete
       parameters:
         - in: path
@@ -160,25 +179,6 @@ paths:
           name: body
           schema:
             $ref: '#/definitions/contact_complete'
-      responses:
-        '200':
-          description: Contact Complete Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/contact_complete"
-      tags:
-      - Contacts
-    get:
-      summary: Get contact with full details
-      description: Returns a contact entry with full details
-      operationId: getContactComplete
-      parameters:
-        - in: path
-          required: true
-          type: string
-          name: contact_id
-          description: The contact id.
       responses:
         '200':
           description: Contact Complete Response
