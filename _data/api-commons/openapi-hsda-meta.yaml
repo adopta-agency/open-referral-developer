@@ -125,7 +125,7 @@ definitions:
         description: 'Each entry must have a unique identifier.'
         type: string
       timestamp:
-        description: 'The timestamp for entry (yyyy-mm-dd)
+        description: The timestamp for entry (yyyy-mm-dd)
         type: string
       appid:
         description: 'The appid for entry.'
