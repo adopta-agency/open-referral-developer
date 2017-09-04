@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Developers</title>
+
+  <link href="/css/bootstrap.css" rel="stylesheet">
+
+  <script src="/js/jquery-latest.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/github.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/utility.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>
+    
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Human Services Developer Portal</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+        
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Home</a></li>
+        <li class="active"><a href="/getting-started/">Getting Started</a></li>
+        <li class="active"><a href="/documentation/">Documentation</a></li>
+        <li class="active"><a href="/support/">Support</a></li>
+        <li class="active"><a href="/about/">About</a></li>
+      </ul>     
+       <a type="button" class="btn btn-default pull-right" style="margin-top: 8px;">Account</a>
+    </div>   
+  </div>
+</nav>
+<div class="container">
+    <div style="padding: 50px;">
+        <div class="page">
+
+            <div class="post">
+  <h1>Playing With One Possible OpenAPI Spec For The Human Services Data Specification (HSDS)</h1>
+  <span class="post-date">09 Apr 2016</span>
+  <p>As I was preparing for my talk with Dan from Open Referral, <a href="http://apievangelist.com/2016/03/31/gathering-my-thoughts-about-open-referral-and-the-human-services-api/">I published some of my thoughts on the organization, and the Human Services Data Specification (HSDS)</a>. One of the things I did as part of that work was generating of a first draft of an OpenAPI Spec for the Open Referral API. To create that draft, I used the existing Ohana API as the base, exposing the same endpoints as they did in the Code For America project.&nbsp;</p>
+<p>Over the last couple days, I spent some more time getting to know the data model set forth by HSDS, and got to work evolving my draft OpenAPI Spec to be closer in alignment with the data schema. To do this I took the JSON Schema for HSDS that was available on the Github, and generated used it as a framework to add any missing elements to the API definition, resulting in almost 70 API paths, in support of almost 20 separate entities dictated in the HSDS.</p>
+<table border="0" cellspacing="2" cellpadding="3">
+<tbody>
+<tr style="background-color: #d3d3d3;">
+<td style="font-size: 18px; font-weight: bold; padding: 10px;" align="left">Open Referral API</td>
+<td style="padding: 10px;" align="right"><a style="font-size: 16px; font-weight: normal;" title="View OpenAPI Spec" href="http://adopta-agency.github.io/open-referral-api/api-commons/openapi-spec.json" target="_blank">OpenAPI Spec</a></td>
+</tr>
+<tr id="methods-for-openapi-spec">
+<td colspan="2">
+<table border="0">
+<tbody>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Categories</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get all categories</td>
+<td style="font-size: 12px;">/categories</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Contacts</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Contacts</td>
+<td style="font-size: 12px;">/contacts</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Create New Contact</td>
+<td style="font-size: 12px;">/contacts</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Contact</td>
+<td style="font-size: 12px;">/contacts/:contact_id</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Contact</td>
+<td style="font-size: 12px;">/contacts/:contact_id</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Contact</td>
+<td style="font-size: 12px;">/contacts/:contact_id</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Contact - Phones</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Phones</td>
+<td style="font-size: 12px;">/contacts/:contact_id/phones</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add Phone</td>
+<td style="font-size: 12px;">/contacts/:contact_id/phones</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Phone</td>
+<td style="font-size: 12px;">/contacts/:contact_id/phones/:phone_id</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Phone</td>
+<td style="font-size: 12px;">/contacts/:contact_id/phones/:phone_id</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Phone</td>
+<td style="font-size: 12px;">/contacts/:contact_id/phones/:phone_id</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Locations</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Locations</td>
+<td style="font-size: 12px;">/locations</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add Location</td>
+<td style="font-size: 12px;">/locations</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Location</td>
+<td style="font-size: 12px;">/locations/:location_id</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Location</td>
+<td style="font-size: 12px;">/locations/:location_id</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">UPDATE</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Location</td>
+<td style="font-size: 12px;">/locations/:location_id</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Location - Holiday Schedule</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Holiday Schedule</td>
+<td style="font-size: 12px;">/locations/:location_id/holiday_schedule/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add Holiday Schedule</td>
+<td style="font-size: 12px;">/locations/:location_id/holiday_schedule/</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Holiday Schedule</td>
+<td style="font-size: 12px;">/locations/:location_id/holiday_schedule/:holiday_schedule_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Holiday Schedule</td>
+<td style="font-size: 12px;">/locations/:location_id/holiday_schedule/:holiday_schedule_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Holiday Schedule</td>
+<td style="font-size: 12px;">/locations/:location_id/holiday_schedule/:holiday_schedule_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Location - Language</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Languages</td>
+<td style="font-size: 12px;">/locations/:location_id/languages/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add Languages</td>
+<td style="font-size: 12px;">/locations/:location_id/languages/</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Languages</td>
+<td style="font-size: 12px;">/locations/:location_id/languages/:language_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Languages</td>
+<td style="font-size: 12px;">/locations/:location_id/languages/:language_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Languages</td>
+<td style="font-size: 12px;">/locations/:location_id/languages/:language_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Location - Postal Address</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Postal Address</td>
+<td style="font-size: 12px;">/locations/:location_id/postal_address</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add New Postal Adress</td>
+<td style="font-size: 12px;">/locations/:location_id/postal_address</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Postal Address</td>
+<td style="font-size: 12px;">/locations/:location_id/postal_address/:postal_address_id</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Postal Address</td>
+<td style="font-size: 12px;">/locations/:location_id/postal_address/:postal_address_id</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Postal Address</td>
+<td style="font-size: 12px;">/locations/:location_id/postal_address/:postal_address_id</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Location - Physical Address</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Physical Address</td>
+<td style="font-size: 12px;">/locations/:location_id/physical_address</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add New Physical Adress</td>
+<td style="font-size: 12px;">/locations/:location_id/physical_address</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Physical Address</td>
+<td style="font-size: 12px;">/locations/:location_id/physical_address/:postal_address_id</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Physical Address</td>
+<td style="font-size: 12px;">/locations/:location_id/physical_address/:postal_address_id</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Physical Address</td>
+<td style="font-size: 12px;">/locations/:location_id/physical_address/:postal_address_id</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Location - Phones</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Phones</td>
+<td style="font-size: 12px;">/locations/:location_id/phones</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add Phone</td>
+<td style="font-size: 12px;">/locations/:location_id/phones</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Phone</td>
+<td style="font-size: 12px;">/locations/:location_id/phones/:phone_id</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Phone</td>
+<td style="font-size: 12px;">/locations/:location_id/phones/:phone_id</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Phone</td>
+<td style="font-size: 12px;">/locations/:location_id/phones/:phone_id</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Location - Regular Schedule</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Regular Schedule</td>
+<td style="font-size: 12px;">/locations/:location_id/regular_schedule</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add Regular Schedule</td>
+<td style="font-size: 12px;">/locations/:location_id/regular_schedule</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Regular Schedule</td>
+<td style="font-size: 12px;">/locations/:location_id/regular_schedule/:regular_schedule_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Regular Schedule</td>
+<td style="font-size: 12px;">/locations/:location_id/regular_schedule/:regular_schedule_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Regular Schedule</td>
+<td style="font-size: 12px;">/locations/:location_id/regular_schedule/:regular_schedule_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Location - Services</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Service</td>
+<td style="font-size: 12px;">/locations/:location_id/services/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add Service</td>
+<td style="font-size: 12px;">/locations/:location_id/services/</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Service</td>
+<td style="font-size: 12px;">/locations/:location_id/services/:service_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Service</td>
+<td style="font-size: 12px;">/locations/:location_id/services/:service_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Service</td>
+<td style="font-size: 12px;">/locations/:location_id/services/:service_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Location - Accessibility For Disabilities</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Accessibility For Disabilities</td>
+<td style="font-size: 12px;">/locations/:location_id/accessibility_for_disabilities/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add Accessibility For Disabilities</td>
+<td style="font-size: 12px;">/locations/:location_id/accessibility_for_disabilities/</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Accessibility For Disabilities</td>
+<td style="font-size: 12px;">/locations/:location_id/accessibility_for_disabilities/:accessibility_for_disabilities_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Accessibility For Disabilities</td>
+<td style="font-size: 12px;">/locations/:location_id/accessibility_for_disabilities/:accessibility_for_disabilities_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Accessibility For Disabilities</td>
+<td style="font-size: 12px;">/locations/:location_id/accessibility_for_disabilities/:accessibility_for_disabilities_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Metadata</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Metadata</td>
+<td style="font-size: 12px;">/metadata</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add New Metadata</td>
+<td style="font-size: 12px;">/metadata</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Service</td>
+<td style="font-size: 12px;">/metadata/:metadata_id</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Metadata</td>
+<td style="font-size: 12px;">/metadata/:metadata_id</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Organizations</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Locations</td>
+<td style="font-size: 12px;">/organizations</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Create a new organization</td>
+<td style="font-size: 12px;">/organizations</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Organization</td>
+<td style="font-size: 12px;">/organizations/:organization_id</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Existing Organization</td>
+<td style="font-size: 12px;">/organizations/:organization_id</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Organization</td>
+<td style="font-size: 12px;">/organizations/:organization_id</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Organization - Contacts</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Contacts</td>
+<td style="font-size: 12px;">/organizations/:organization_id/contacts</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add Contact</td>
+<td style="font-size: 12px;">/organizations/:organization_id/contacts</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Contact</td>
+<td style="font-size: 12px;">/organizations/:organization_id/contacts/:contact_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Contact</td>
+<td style="font-size: 12px;">/organizations/:organization_id/contacts/:contact_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Contact</td>
+<td style="font-size: 12px;">/organizations/:organization_id/contacts/:contact_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Organization - Funding</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Funding</td>
+<td style="font-size: 12px;">/organizations/:organization_id/funding/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add Funding</td>
+<td style="font-size: 12px;">/organizations/:organization_id/funding/</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Funding</td>
+<td style="font-size: 12px;">/organizations/:organization_id/funding/:funding_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Funding</td>
+<td style="font-size: 12px;">/organizations/:organization_id/funding/:funding_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Funding</td>
+<td style="font-size: 12px;">/organizations/:organization_id/funding/:funding_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Organization - Locations</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Location</td>
+<td style="font-size: 12px;">/organizations/:organization_id/locations</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Create a new location</td>
+<td style="font-size: 12px;">/organizations/:organization_id/locations</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Existing Location</td>
+<td style="font-size: 12px;">/organizations/:organization_id/locations/:location_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Create a new location</td>
+<td style="font-size: 12px;">/organizations/:organization_id/locations/:location_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Location</td>
+<td style="font-size: 12px;">/organizations/:organization_id/locations/:location_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Organization - Phones</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Phones</td>
+<td style="font-size: 12px;">/organizations/:organization_id/phones</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add Phone</td>
+<td style="font-size: 12px;">/organizations/:organization_id/phones</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Phone</td>
+<td style="font-size: 12px;">/organizations/:organization_id/phones/:phone_id</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Phone</td>
+<td style="font-size: 12px;">/organizations/:organization_id/phones/:phone_id</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Phone</td>
+<td style="font-size: 12px;">/organizations/:organization_id/phones/:phone_id</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Organization - Programs</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Programs</td>
+<td style="font-size: 12px;">/organizations/:organization_id/programs</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add Program</td>
+<td style="font-size: 12px;">/organizations/:organization_id/programs</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Program</td>
+<td style="font-size: 12px;">/organizations/:organization_id/programs/:program_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Program</td>
+<td style="font-size: 12px;">/organizations/:organization_id/programs/:program_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Program</td>
+<td style="font-size: 12px;">/organizations/:organization_id/programs/:program_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Organization - Program Services</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Service</td>
+<td style="font-size: 12px;">/organizations/:organization_id/programs/:program_id/services/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add Service</td>
+<td style="font-size: 12px;">/organizations/:organization_id/programs/:program_id/services/</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Service</td>
+<td style="font-size: 12px;">/organizations/:organization_id/programs/:program_id/services/:service_id</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Service</td>
+<td style="font-size: 12px;">/organizations/:organization_id/programs/:program_id/services/:service_id</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Service</td>
+<td style="font-size: 12px;">/organizations/:organization_id/programs/:program_id/services/:service_id</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Organization - Services</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Services</td>
+<td style="font-size: 12px;">/organizations/:organization_id/services</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add Service</td>
+<td style="font-size: 12px;">/organizations/:organization_id/services</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Service</td>
+<td style="font-size: 12px;">/organizations/:organization_id/services/:service_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Service</td>
+<td style="font-size: 12px;">/organizations/:organization_id/services/:service_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Service</td>
+<td style="font-size: 12px;">/organizations/:organization_id/services/:service_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Search</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get locations that match certain criteria.</td>
+<td style="font-size: 12px;">/search</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Service - Categories</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update a service&rsquo;s categories</td>
+<td style="font-size: 12px;">/services/:service_id/categories</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Service - Contacts</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Contacts</td>
+<td style="font-size: 12px;">/services/:service_id/contacts</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add Contact</td>
+<td style="font-size: 12px;">/services/:service_id/contacts</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Contact</td>
+<td style="font-size: 12px;">/services/:service_id/contacts/:contact_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Contact</td>
+<td style="font-size: 12px;">/services/:service_id/contacts/:contact_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Contact</td>
+<td style="font-size: 12px;">/services/:service_id/contacts/:contact_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Service - Eligibility</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Eligibility</td>
+<td style="font-size: 12px;">/services/:service_id/eligibility/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add Eligibility</td>
+<td style="font-size: 12px;">/services/:service_id/eligibility/</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Eligibility</td>
+<td style="font-size: 12px;">/services/:service_id/eligibility/:eligibility_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Eligibility</td>
+<td style="font-size: 12px;">/services/:service_id/eligibility/:eligibility_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Eligibility Contact</td>
+<td style="font-size: 12px;">/services/:service_id/eligibility/:eligibility_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Service - Fees</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Fees</td>
+<td style="font-size: 12px;">/services/:service_id/fees/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add Fees</td>
+<td style="font-size: 12px;">/services/:service_id/fees/</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Fees</td>
+<td style="font-size: 12px;">/services/:service_id/fees/:feed_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Fees</td>
+<td style="font-size: 12px;">/services/:service_id/fees/:feed_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Eligibility Fees</td>
+<td style="font-size: 12px;">/services/:service_id/fees/:feed_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Service - Funding</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Funding</td>
+<td style="font-size: 12px;">/services/:service_id/funding/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add Funding</td>
+<td style="font-size: 12px;">/services/:service_id/funding/</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Funding</td>
+<td style="font-size: 12px;">/services/:service_id/funding/:funding_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Funding</td>
+<td style="font-size: 12px;">/services/:service_id/funding/:funding_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Funding</td>
+<td style="font-size: 12px;">/services/:service_id/funding/:funding_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Service - Holiday Schedule</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Holiday Schedule</td>
+<td style="font-size: 12px;">/services/:service_id/holiday_schedule/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add Holiday Schedule</td>
+<td style="font-size: 12px;">/services/:service_id/holiday_schedule/</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Holiday Schedule</td>
+<td style="font-size: 12px;">/services/:service_id/holiday_schedule/:holiday_schedule_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Holiday Schedule</td>
+<td style="font-size: 12px;">/services/:service_id/holiday_schedule/:holiday_schedule_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Holiday Schedule</td>
+<td style="font-size: 12px;">/services/:service_id/holiday_schedule/:holiday_schedule_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Service - Interpretation Services</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Interpretation Services</td>
+<td style="font-size: 12px;">/services/:service_id/intepretation_services/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add Interpretation Services</td>
+<td style="font-size: 12px;">/services/:service_id/intepretation_services/</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Interpretation Services</td>
+<td style="font-size: 12px;">/services/:service_id/intepretation_services/:intepretation_services_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Interpretation Services</td>
+<td style="font-size: 12px;">/services/:service_id/intepretation_services/:intepretation_services_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Interpretation Services</td>
+<td style="font-size: 12px;">/services/:service_id/intepretation_services/:intepretation_services_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Service - Languages</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Languages</td>
+<td style="font-size: 12px;">/services/:service_id/languages/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add Languages</td>
+<td style="font-size: 12px;">/services/:service_id/languages/</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Languages</td>
+<td style="font-size: 12px;">/services/:service_id/languages/:language_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Languages</td>
+<td style="font-size: 12px;">/services/:service_id/languages/:language_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Languages</td>
+<td style="font-size: 12px;">/services/:service_id/languages/:language_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Service - Payment Accepted</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Payment Accepted</td>
+<td style="font-size: 12px;">/services/:service_id/payment_accepted/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add Payment Accepted</td>
+<td style="font-size: 12px;">/services/:service_id/payment_accepted/</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Payment Accepted</td>
+<td style="font-size: 12px;">/services/:service_id/payment_accepted/:payment_accepted_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Payment Accepted</td>
+<td style="font-size: 12px;">/services/:service_id/payment_accepted/:payment_accepted_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Payment Accepted</td>
+<td style="font-size: 12px;">/services/:service_id/payment_accepted/:payment_accepted_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Service - Phones</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Phones</td>
+<td style="font-size: 12px;">/services/:service_id/phones</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add Phone</td>
+<td style="font-size: 12px;">/services/:service_id/phones</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Phone</td>
+<td style="font-size: 12px;">/services/:service_id/phones/:phone_id</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Phone</td>
+<td style="font-size: 12px;">/services/:service_id/phones/:phone_id</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Phone</td>
+<td style="font-size: 12px;">/services/:service_id/phones/:phone_id</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Service - Regular Schedule</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Regular Schedule</td>
+<td style="font-size: 12px;">/services/:service_id/regular_schedule</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add Regular Schedule</td>
+<td style="font-size: 12px;">/services/:service_id/regular_schedule</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Regular Schedule</td>
+<td style="font-size: 12px;">/services/:service_id/regular_schedule/:required_document_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Regular Schedule</td>
+<td style="font-size: 12px;">/services/:service_id/regular_schedule/:required_document_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Regular Schedule</td>
+<td style="font-size: 12px;">/services/:service_id/regular_schedule/:required_document_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Service - Required Document</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Required Document</td>
+<td style="font-size: 12px;">/services/:service_id/required_document/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add Required Document</td>
+<td style="font-size: 12px;">/services/:service_id/required_document/</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Required Document</td>
+<td style="font-size: 12px;">/services/:service_id/required_document/:required_document_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Required Document</td>
+<td style="font-size: 12px;">/services/:service_id/required_document/:required_document_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Required Document</td>
+<td style="font-size: 12px;">/services/:service_id/required_document/:required_document_id/</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td style="padding-top: 10px;" colspan="3"><strong>Service - Areas</strong></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Service Area</td>
+<td style="font-size: 12px;">/services/:service_id/service_area/</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Add Service Area</td>
+<td style="font-size: 12px;">/services/:service_id/service_area/</td>
+<td style="padding: 5px; width: 50px; background-color: #0000ff; font-weight: bold; font-size: 11px; color: #fff;" align="center">POST</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Get Service Area</td>
+<td style="font-size: 12px;">/services/:service_id/service_area/:service_area_id</td>
+<td style="padding: 5px; width: 50px; background-color: #009900; font-weight: bold; font-size: 11px; color: #fff;" align="center">GET</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Update Service Area</td>
+<td style="font-size: 12px;">/services/:service_id/service_area/:service_area_id</td>
+<td style="padding: 5px; width: 50px; background-color: #ff0080; font-weight: bold; font-size: 11px; color: #fff;" align="center">PUT</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; font-size: 11px;">Delete Service Area</td>
+<td style="font-size: 12px;">/services/:service_id/service_area/:service_area_id</td>
+<td style="padding: 5px; width: 50px; background-color: #ff9900; font-weight: bold; font-size: 11px; color: #fff;" align="center">DELETE</td>
+</tr>
+<tr>
+<td colspan="3">&nbsp;</td>
+</tr>
+<tr style="background-color: #d3d3d3;">
+<td style="font-size: 18px; font-weight: bold; padding: 10px;" align="left">Entities</td>
+<td style="padding: 10px;" colspan="2" align="right"><a style="font-size: 16px; font-weight: normal;" title="View JSON Schema" href="http://adopta-agency.github.io/open-referral-api/api-commons/schema.json" target="_blank">JSON Schema</a></td>
+</tr>
+<tr>
+<td style="padding-left: 10px; padding-top: 10px;" colspan="3"><strong>accessibility_for_disabilities</strong> 
+<ul style="padding-left: 25px; margin-top: 5px;">
+<li>id</li>
+<li>location_id</li>
+<li>accessibility</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; padding-top: 10px;" colspan="3"><strong>contact</strong> 
+<ul style="padding-left: 25px; margin-top: 5px;">
+<li>id</li>
+<li>organization_id</li>
+<li>service_id</li>
+<li>name</li>
+<li>title</li>
+<li>department</li>
+<li>email</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; padding-top: 10px;" colspan="3"><strong>eligibility</strong> 
+<ul style="padding-left: 25px; margin-top: 5px;">
+<li>id</li>
+<li>service_id</li>
+<li>eligibility</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; padding-top: 10px;" colspan="3"><strong>fee</strong> 
+<ul style="padding-left: 25px; margin-top: 5px;">
+<li>id</li>
+<li>service_id</li>
+<li>fee</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; padding-top: 10px;" colspan="3"><strong>funding</strong> 
+<ul style="padding-left: 25px; margin-top: 5px;">
+<li>id</li>
+<li>organization_id</li>
+<li>service_id</li>
+<li>source</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; padding-top: 10px;" colspan="3"><strong>holiday_schedule</strong> 
+<ul style="padding-left: 25px; margin-top: 5px;">
+<li>id</li>
+<li>service_id</li>
+<li>location_id</li>
+<li>closed</li>
+<li>opens_at</li>
+<li>closes_at</li>
+<li>start_date</li>
+<li>end_date</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; padding-top: 10px;" colspan="3"><strong>intepretation_services</strong> 
+<ul style="padding-left: 25px; margin-top: 5px;">
+<li>id</li>
+<li>service_id</li>
+<li>language</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; padding-top: 10px;" colspan="3"><strong>language</strong> 
+<ul style="padding-left: 25px; margin-top: 5px;">
+<li>id</li>
+<li>service_id</li>
+<li>location_id</li>
+<li>language</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; padding-top: 10px;" colspan="3"><strong>location</strong> 
+<ul style="padding-left: 25px; margin-top: 5px;">
+<li>id</li>
+<li>organization_id</li>
+<li>name</li>
+<li>alternate_name</li>
+<li>transportation</li>
+<li>latitude</li>
+<li>longitude</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; padding-top: 10px;" colspan="3"><strong>metadata</strong> 
+<ul style="padding-left: 25px; margin-top: 5px;">
+<li>id</li>
+<li>resource_id</li>
+<li>last_action_date</li>
+<li>last_action_type</li>
+<li>field_name</li>
+<li>previous_value</li>
+<li>replacement_value</li>
+<li>updated_by</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; padding-top: 10px;" colspan="3"><strong>organization</strong> 
+<ul style="padding-left: 25px; margin-top: 5px;">
+<li>id</li>
+<li>name</li>
+<li>alternate_name</li>
+<li>description</li>
+<li>email</li>
+<li>url</li>
+<li>tax_status</li>
+<li>tax_id</li>
+<li>year_incorporated</li>
+<li>legal_status</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; padding-top: 10px;" colspan="3"><strong>payment_accepted</strong> 
+<ul style="padding-left: 25px; margin-top: 5px;">
+<li>id</li>
+<li>service_id</li>
+<li>payment</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; padding-top: 10px;" colspan="3"><strong>phone</strong> 
+<ul style="padding-left: 25px; margin-top: 5px;">
+<li>id</li>
+<li>location_id</li>
+<li>service_id</li>
+<li>organization_id</li>
+<li>contact_id</li>
+<li>number</li>
+<li>extension</li>
+<li>type</li>
+<li>department</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; padding-top: 10px;" colspan="3"><strong>physical_address</strong> 
+<ul style="padding-left: 25px; margin-top: 5px;">
+<li>id</li>
+<li>location_id</li>
+<li>attention</li>
+<li>address_1</li>
+<li>address_2</li>
+<li>address_3</li>
+<li>address_4</li>
+<li>city</li>
+<li>state_province</li>
+<li>postal_code</li>
+<li>country</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; padding-top: 10px;" colspan="3"><strong>postal_address</strong> 
+<ul style="padding-left: 25px; margin-top: 5px;">
+<li>id</li>
+<li>location_id</li>
+<li>attention</li>
+<li>address_1</li>
+<li>address_2</li>
+<li>address_3</li>
+<li>address_4</li>
+<li>city</li>
+<li>state_province</li>
+<li>postal_code</li>
+<li>country</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; padding-top: 10px;" colspan="3"><strong>program</strong> 
+<ul style="padding-left: 25px; margin-top: 5px;">
+<li>id</li>
+<li>organization_id</li>
+<li>name</li>
+<li>alternate_name</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; padding-top: 10px;" colspan="3"><strong>regular_schedule</strong> 
+<ul style="padding-left: 25px; margin-top: 5px;">
+<li>id</li>
+<li>service_id</li>
+<li>location_id</li>
+<li>weekday</li>
+<li>opens_at</li>
+<li>closes_at</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; padding-top: 10px;" colspan="3"><strong>required_document</strong> 
+<ul style="padding-left: 25px; margin-top: 5px;">
+<li>id</li>
+<li>service_id</li>
+<li>document</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; padding-top: 10px;" colspan="3"><strong>service</strong> 
+<ul style="padding-left: 25px; margin-top: 5px;">
+<li>id</li>
+<li>organization_id</li>
+<li>program_id</li>
+<li>location_id</li>
+<li>name</li>
+<li>alternate_name</li>
+<li>url</li>
+<li>email</li>
+<li>status</li>
+<li>application_process</li>
+<li>wait_time</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 10px; padding-top: 10px;" colspan="3"><strong>service_area</strong> 
+<ul style="padding-left: 25px; margin-top: 5px;">
+<li>id</li>
+<li>service_id</li>
+<li>service_area</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<p>This is a very formulaic, generated, representation of what the Open Referral API could look like. While I have lots of ideas on how to improve on the design, I want to be cautious to not project too much of my own views on the API design--something the community should do together. I can tell a lot of work went into the current specification, and the same amount of energy should go into evolving the API design.</p>
+<p>I accomplished what I wanted. Learn more about HSDS, get more familiar with the entities at play, while also producing a fairly robust representation of what an API could look like for Open Referral. It has way more details than the average implementation will need, but I wanted to cover all the bases, providing full control over every entity, and relationship represented in HSDS. Most importantly I was able to get more intimate with the specification, while also producing an OpenAPI Spec that will playing a central role throughout this project.</p>
+<p>Next I'm going to play with some minimum viable representations, and other ways to tell stories and talk about the HSDS. I'd like to eventually have a whole toolbox of YAML / JSON driven UI elements, like the one I pasted in this post, allowing me to describe all the moving parts of the Open Referral work. More posts to come, as I work through my thoughts, and play possible designs for the Human Services Data Specification (HSDS).<!--?p--></p>
+</div>
+
+<div class="pagination">
+	
+	   	<a href="/2016/04/02/the-most-meta-api-of-them-all/" class="older">Older</a>
+	
+	  
+	    <span class="next">Newer</span>
+	  
+</div>
+
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .panel-footer ul{
+       margin-top: 5px;
+    }
+    .panel-footer ul li {
+        display: inline;
+        margin-left: 10px;
+        margin-right: 10px;
+    }    
+    .panel-footer ul a{
+       color: #FFF;
+    }    
+</style>
+<footer class="panel-footer">
+  <div class="container" align="center">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/terms-of-service/">Terms of Service</a></li>
+        <li><a href="/privacy-policay/">Privacy Policy</a></li>
+        <li><a href="/about/">About</a></li>
+    </ul>
+  </div>
+</footer>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

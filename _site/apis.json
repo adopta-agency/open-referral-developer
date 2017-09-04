@@ -1,8 +1,131 @@
-
-
-
-
-
-
-
-[{"name":"Open Referral Human Services Data API (HSDA) Demo", "description":"This is a demonstration developer area for the Open Referral API, providing access to the raw data as part of an Open Referral demo. The purpose of this API is to allow anyone to develop web, mobile, or other types of applications that serve the mission of any Open 211 organization. This portal is just a demo, meant to demonstrate what is possible, if you'd like to launch an Open 211 API, feel free to reach out via one of the support channels.", "image":"http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/open_referral_logo.png", "tags":["Human Services", "Locations", "Services", "Open Referral", "API", "Application Programming Interface", "Developers"], "created":"2017-01-23", "modified":"2017-03-01", "url":"http://developer.open.referral.adopta.agency/apis.json", "specificationVersion":"0.14", "apis":[{"name":"Open Referral Human Services Data API (HSDA)", "description":"API access to Open Referral human services data, including organizations, locations, and services.", "image":"http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/open_referral_logo.png", "humanURL":"http://developer.open.referral.adopta.agency/", "baseURL":"http://api.open.referral.adopta.agency", "tags":["Human Services", "Locations", "Services", "Open Referral", "API", "Application Programming Interface", "Developers"], "properties":[{"type":"x-openapi", "url":"/openapi.json"}, {"type":"x-json-schema", "url":"/data/schema.json"}, {"type":"x-api-filters", "url":"api-commons/api-filter.json"}]}], "x-common":[{"type":"x-authentication-overview", "url":"/authentication/"}, {"type":"x-base-url-for-api", "url":"http://api.open.referral.adopta.agency"}, {"type":"x-blog", "url":"/blog/"}, {"type":"x-blog-rss-feed", "url":"blog.xml"}, {"type":"x-change-log", "url":"/change-log/"}, {"type":"x-portal", "url":"http://developer.open.referral.adopta.agency/"}, {"type":"x-documentation", "url":"/documentation/"}, {"type":"x-faq", "url":"/frequently-asked-questions/"}, {"type":"x-getting-started", "url":"/getting-started/"}, {"type":"x-github", "url":"https://github.com/adopta-agency/open-referral-developer/"}, {"type":"x-issues", "url":"/issues/"}, {"type":"x-status", "url":"/status/"}, {"type":"x-login", "url":"http://developer.open.referral.adopta.agency//users/sign_in"}, {"type":"x-privacy-policy-page", "url":"/privacy-policy/"}, {"type":"x-road-map", "url":"/road-map/"}, {"type":"x-selfservice-registration", "url":"http://developer.open.referral.adopta.agency//users/sign_up"}, {"type":"x-status-dashboard", "url":"/status/"}, {"type":"x-api-science", "url":"https://api.apiscience.com/v1/monitors/1572918/uptime.json?preset=lastDay"}, {"type":"x-support-overview-page", "url":"/support/"}, {"type":"x-terms-of-service-page", "url":"/terms-of-service/"}, {"type":"x-twitter", "url":"https://twitter.com/apievangelist"}, {"type":"x-twitter", "url":"https://twitter.com/apievangelist"}, {"type":"x-twitter", "url":"https://twitter.com/apievangelist"}, {"type":"x-postman", "url":"http://developer.open.referral.adopta.agency/postman_collection.json"}, {"type":"x-code-page", "url":"/code/"}], "include":[], "maintainers":[{"FN":"Greg Bloom", "x-twitter":"open_referral", "email":"bloom@openreferral.org"}]}]
+{
+  "name": "Open Referral API",
+  "description": "This is a specification describing the Open Referral API, using the Human Services Specification. This has been extracted from the Ohana API deployment, but will be standardized to refer to the universal standard that will apply to any Open Referral compliant API.",
+  "image": "https://s3.amazonaws.com/kinlane-productions/adopta-agency/open-referral/openreferral-logo.png",
+  "x-open-ranking": "0",
+  "tags": [
+    "API",
+    "Human Services"
+  ],
+  "created": "2016-04-09",
+  "modified": "2016-04-09",
+  "url": "http://developer.open.referral.adopta.agency/",
+  "specificationVersion": "0.14",
+  "apis": [
+    {
+      "name": "Open Referral API",
+      "description": "This is a specification describing the Open Referral API, using the Human Services Specification. This has been extracted from the Ohana API deployment, but will be standardized to refer to the universal standard that will apply to any Open Referral compliant API.",
+      "image": "https://s3.amazonaws.com/kinlane-productions/adopta-agency/open-referral/openreferral-logo.png",
+      "humanURL": "http://developer.open.referral.adopta.agency/",
+      "baseURL": "/",
+      "tags": [
+        "API",
+        "Human Services"
+      ],
+      "properties": [
+        {
+          "type": "x-openapi-spec",
+          "url": "api-commons/openapi-spec.json"
+        },
+        {
+          "type": "x-json-schema",
+          "url": "api-commons/schema.json"
+        },
+        {
+          "type": "x-api-filters",
+          "url": "api-commons/api-filter.json"
+        }
+      ]
+    }
+  ],
+  "x-common": [
+    {
+      "type": "x-authentication-overview",
+      "url": "authentication/"
+    },
+    {
+      "type": "x-base-url-for-api",
+      "url": "http://api.kinlane.com"
+    },
+    {
+      "type": "x-blog",
+      "url": "blog/"
+    },
+    {
+      "type": "x-blog-rss-feed",
+      "url": "blog.xml"
+    },
+    {
+      "type": "x-change-log",
+      "url": "change-log/"
+    },
+    {
+      "type": "x-portal",
+      "url": "http://developer.open.referral.adopta.agency/"
+    },
+    {
+      "type": "x-documentation",
+      "url": "documentation/"
+    },
+    {
+      "type": "x-faq",
+      "url": "frequently-asked-questions/"
+    },
+    {
+      "type": "x-getting-started",
+      "url": "getting-started/"
+    },
+    {
+      "type": "x-github",
+      "url": "https://github.com/openreferral"
+    },
+    {
+      "type": "x-issues",
+      "url": "issues/"
+    },
+    {
+      "type": "x-login",
+      "url": "https://apievangelist.3scale.net/login"
+    },
+    {
+      "type": "x-dedicated-plans--pricing-page",
+      "url": "plans/"
+    },
+    {
+      "type": "x-privacy-policy-page",
+      "url": "privacy-policy/"
+    },
+    {
+      "type": "x-road-map",
+      "url": "road-map/"
+    },
+    {
+      "type": "x-selfservice-registration",
+      "url": "https://apievangelist.3scale.net/signup"
+    },
+    {
+      "type": "x-status-dashboard",
+      "url": "status/"
+    },
+    {
+      "type": "x-support-overview-page",
+      "url": "support/"
+    },
+    {
+      "type": "x-terms-of-service-page",
+      "url": "terms-of-service/"
+    },
+    {
+      "type": "x-twitter",
+      "url": "https://twitter.com/openreferral"
+    }
+  ],
+  "include": [],
+  "maintainers": [
+    {
+      "FN": "Kin Lane",
+      "x-twitter": "apievangelist",
+      "email": "info@apievangelist.com"
+    }
+  ]
+}
