@@ -29,7 +29,7 @@
       - Developers
     properties:
     - type: x-openapi
-      url: /data/openapi.json
+      url: /openapi.json
     - type: x-json-schema
       url: /data/schema.json
     - type: x-api-filters
